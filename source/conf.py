@@ -15,13 +15,14 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+import datetime
 
 # -- Project information -----------------------------------------------------
 
 project = u'doc-test'
-copyright = u'2018, Naylin Medina'
-author = u'Naylin Medina'
+thisyear = datetime.datetime.now().year
+copyright = u'2016-%s, Teclib\'' % thisyear
+author = u'Flyve MDM'
 
 # The short X.Y version
 version = u''
