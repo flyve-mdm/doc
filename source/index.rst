@@ -15,3 +15,4 @@ Table of Contents
    update/index
    getting-started/index
    how-works/index
+   use-cases/index
