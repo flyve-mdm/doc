@@ -14,3 +14,4 @@ Table of Contents
    installation/index
    update/index
    getting-started/index
+   how-works/index
