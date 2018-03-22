@@ -12,3 +12,4 @@ Table of Contents
    :maxdepth: 3
 
    installation/index
+   update/index
