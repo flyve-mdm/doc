@@ -4,7 +4,7 @@ Files and Applications Download
 Prerequisites
 ~~~~~~~~~~~~~
 
-The device needs to be logged with a user account. Refer to `enrollment process`_ to know how to log in.
+The device needs to be logged with a user account. Refer to enrollment process to know how to log in.
 
 Download a file
 ~~~~~~~~~~~~~~~
