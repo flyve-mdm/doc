@@ -12,9 +12,9 @@ Table of Contents
    :maxdepth: 3
 
    installation/index
+   config/index
    update/index
    getting-started/index
    how-works/index
    use-cases/index
    rest-api/index
-   
