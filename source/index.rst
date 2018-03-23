@@ -16,3 +16,5 @@ Table of Contents
    getting-started/index
    how-works/index
    use-cases/index
+   rest-api/index
+   
