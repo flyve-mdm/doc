@@ -1,5 +1,9 @@
 Flyve MDM plugin Documentation
-==========================================
+==============================
+
+.. image:: /_static/flyve-mdm.jpeg
+   :alt: Flyve MDM
+   :align: center
 
 .. toctree::
    :maxdepth: 2
