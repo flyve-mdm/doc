@@ -20,5 +20,6 @@ Table of Contents
    update/index
    getting-started/index
    how-works/index
+   M2M.rst
    use-cases/index
    rest-api/index
