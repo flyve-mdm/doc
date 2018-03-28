@@ -251,3 +251,31 @@ Features
 .. warning::
 
    After wipe there is no going back.
+
+Unenrolling Agents
+------------------
+
+To unenroll an Agent you must go to the Agent's section, select the Agent to Unenroll and select the tab Danger Zone! Click on Unenroll.
+
+.. image:: images/unenroll.png
+
+
+The Unenrollment will leave the device at the current state, this means the Flyve MDM Agent won't be uninstalled from the device, however the policies will be unapplied.
+
+.. note::
+   To uninstall the App you must go to Device Administrator and uncheck Flyve MDM. 
+
+Delete an Agent
+---------------
+
+Go to the Agent's section, select the Agent to delete, select the tab Agent and click on Delete permanently.
+
+.. image:: images/delete.png
+
+This will make all the policies unapplied.
+
+.. important::
+   The Apps & Files already deployed won't be removed after deleting or unenrolling an Agent.
+
+.. warning::
+   When deleting or unenrolling the Agent, you can't go back. You will have to re-enroll the device again.
