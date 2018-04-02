@@ -1,9 +1,6 @@
 Use Cases
 =========
 
-Index
------
-
 .. toctree::
    :maxdepth: 2
 
