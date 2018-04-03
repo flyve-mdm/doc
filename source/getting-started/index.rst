@@ -15,10 +15,10 @@ In order to add the devices to your fleet, you must invite the owner of the devi
 * Write the email of the user whose device you'll control
 * Click on Add
 
-Automatically it will appear to you on the *Pending Invitations* until the user enrolls the device.
-
-.. image:: images/invitations.gif 
+.. image:: images/invitation.gif 
    :alt: Invitations
+
+The invitation will have the status pending until the user enrolls the device.
 
 .. note::
 
@@ -37,14 +37,28 @@ You must create a new fleet since the "not managed fleet" is the default one and
 .. warning::
    Carefull, be sure to not delete it since it will bring you some problems.
 
-In order to create it, you only have to click in the "+" button on the Fleet section, name it and click on add.
+In order to create it, you only have to follow these steps:
+
+* Click in the "+" button on the Fleet section
+* Name it and Click on add.
+
+.. image:: images/fleet.gif
+   :alt: Fleet creation
+
+When you return to the Fleet section, you'll see your created fleet listed.
 
 Add Policies
 ~~~~~~~~~~~~
 
-To add the policies go to the Fleets section and select your Fleet by clicking on it, select the Policies tab, there you can add all the policies your fleet requires.
+To add the policies:
 
-.. image:: images/fleet.gif
+* Go to the Fleets section 
+* Select your Fleet by clicking on it
+* Select the Policies tab
+
+There you can add all the policies your fleet requires.
+
+.. image:: images/add-policy.png
    :alt: Fleet creation
 
 Once you assign the devices to the Fleet, all the policies will be immediately applied!
@@ -82,7 +96,7 @@ You must add in their respective sections the Files and Packages so you can depl
 
 Now it will be available when you use the Deploy file policy.
 
-.. image :: images/df1.png
+.. image :: images/file-added.png
    :alt: File deployment
 
 The same procedure applies to the applications.
@@ -92,12 +106,12 @@ The same procedure applies to the applications.
 * Name and select your application
 * Click on Add
 
-.. image :: images/da.gif
+.. image :: images/app.gif
    :alt: Adding Applications
 
 Now it will be available when you use the Deploy application policy.
 
-.. image :: images/app4.png 
+.. image :: images/app-added.png 
    :alt: Apps deployment
 
 Our Policies
@@ -105,7 +119,7 @@ Our Policies
 
 The policies selected are sent in a JSON file to the MDM Agent with the values specified.
 
-If the MDM Agent does not have the system privileges it will require the confirmation of the user to implement the policies.
+If the MDM Agent does not have the system privileges, it will require the confirmation of the user to implement the policies.
 
 Disable
 ~~~~~~~
