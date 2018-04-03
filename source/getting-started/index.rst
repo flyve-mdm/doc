@@ -10,7 +10,10 @@ Enrolling Agents
 
 In order to add the devices to your fleet, you must invite the owner of the device to enroll by sending him an email.
 
-Go to the Invitations section, click on the "+" button and write the email of the user whose device you'll control.
+* Go to the Invitations section
+* Click on the "+" button
+* Write the email of the user whose device you'll control
+* Click on Add
 
 Automatically it will appear to you on the *Pending Invitations* until the user enrolls the device.
 
@@ -21,14 +24,10 @@ Automatically it will appear to you on the *Pending Invitations* until the user 
 
    Users must have installed in their devices the Android or iOS Agent, see these links for more information:
 
-    * `Android MDM Agent <http://flyve.org/android-mdm-agent/>`_.
-    * `iOS MDM Agent <http://flyve.org/ios-mdm-agent/>`_.
+    * `Android MDM Agent - Getting started <http://flyve.org/android-mdm-agent/howtos/getting-started>`_.
+    * `iOS MDM Agent - Getting started <http://flyve.org/ios-mdm-agent/howtos/getting-started>`_.
 
-After enrollment, the device will be displayed on the Agent section, you can from there on:
-
-* Assign the Agent to a fleet
-* Get the Inventory
-* Geolocate the device
+After enrollment, the device will be displayed on the Agent section.
 
 Create your Fleet
 -----------------
@@ -40,12 +39,30 @@ You must create a new fleet since the "not managed fleet" is the default one and
 
 In order to create it, you only have to click in the "+" button on the Fleet section, name it and click on add.
 
-To add the policies go to the Fleets section and select your Fleet by clicking on it, with the left side menu you can add all the policies your fleet requires.
+Add Policies
+~~~~~~~~~~~~
+
+To add the policies go to the Fleets section and select your Fleet by clicking on it, select the Policies tab, there you can add all the policies your fleet requires.
 
 .. image:: images/fleet.gif
    :alt: Fleet creation
 
 Once you assign the devices to the Fleet, all the policies will be immediately applied!
+
+Assign the Agent to a Fleet
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For this you must go to the Agent section
+
+* Select the Agent
+* In the Fleet option, select your fleet
+* Click on save
+
+.. image :: images/assign-fleet.png
+   :alt: Assign a fleet
+
+.. note ::
+   An Agent can be assigned to only one Fleet.
 
 Adding Files & Applications
 ---------------------------
@@ -55,7 +72,10 @@ You must add in their respective sections the Files and Packages so you can depl
 .. note ::
    You must have previously added the APK and UPK types.
 
-Go to the Files section, click on the "+" button, name and select your file, click on "add"
+* Go to the Files section
+* Click on the "+" button
+* Name and select your file
+* Click on Add
 
 .. image :: images/file.gif
    :alt: Adding files
@@ -67,7 +87,10 @@ Now it will be available when you use the Deploy file policy.
 
 The same procedure applies to the applications.
 
-Go to the Package section, click on the "+" button, name and select your application, click on "add"
+* Go to the Package section
+* Click on the "+" button
+* Name and select your application
+* Click on Add
 
 .. image :: images/da.gif
    :alt: Adding Applications
@@ -243,10 +266,35 @@ Inventory
 Features
 --------
 
-* Ping: check the connectivity with the device.
-* Geolocate: geolocates the device immediately.
-* Lock / Unlock: locks/unlocks the device.
-* Wipe: erase all the information in the device.
+These are particular actions that can be taken only from the Agent section, some are accessible from the Agent tab and others from the Danger Zone! tab.
+
+Ping
+~~~~
+ 
+Allows to check the connectivity with the device.
+
+Geolocate
+~~~~~~~~~
+
+Geolocates the device and shows its location on the map.
+
+.. image:: images/geolocation.png
+   :alt: Geolocation
+
+Inventory
+~~~~~~~~~
+
+Get the current inventory of the device.
+
+Lock
+~~~~
+
+If enabled, it will lock the device.
+
+Wipe
+~~~~
+
+Erase all the information in the device.
 
 .. warning::
 
@@ -255,27 +303,34 @@ Features
 Unenrolling Agents
 ------------------
 
-To unenroll an Agent you must go to the Agent's section, select the Agent to Unenroll and select the tab Danger Zone! Click on Unenroll.
-
-.. image:: images/unenroll.png
-
-
 The Unenrollment will leave the device at the current state, this means the Flyve MDM Agent won't be uninstalled from the device, however the policies will be unapplied.
 
+* Go to the Agent's section
+* Select the Agent to Unenroll
+* Select the tab Danger Zone! 
+* Click on Unenroll.
+
+.. image:: images/unenroll.png
+   :alt: Unenroll
+
 .. note::
-   To uninstall the App you must go to Device Administrator and uncheck Flyve MDM. 
+   To uninstall the App you must go to Security > Device Administrator and uncheck Flyve MDM first.
 
 Delete an Agent
 ---------------
 
-Go to the Agent's section, select the Agent to delete, select the tab Agent and click on Delete permanently.
+Deleting the agent will make all the policies unapplied.
+
+* Go to the Agent's section 
+* Select the Agent to delete
+* Select the tab Agent
+* Click on Delete permanently.
 
 .. image:: images/delete.png
-
-This will make all the policies unapplied.
+   :alt: Delete permanently
 
 .. important::
-   The Apps & Files already deployed won't be removed after deleting or unenrolling an Agent.
+   Apps & Files already deployed won't be removed after deleting or unenrolling an Agent.
 
 .. warning::
    When deleting or unenrolling the Agent, you can't go back. You will have to re-enroll the device again.
