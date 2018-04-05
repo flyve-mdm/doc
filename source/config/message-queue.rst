@@ -20,3 +20,11 @@ Message Queue
   
   * Use client certificate: enables use of the client's certificate.
   * SSL certificate server for MQTT clients: url to the certificate server for MQTT clients.
+
+.. important::
+   After sending the certification request, the CA will very likely send back several files. 
+   One is the certificate, signed by the CA, and the others are intermediate certificates.
+   
+   In Mosquitto **the certificate must be the concatenation of the certificate delivered + the intermediate certificates.**
+
+   The operating system must contain more certificates to establish a trust chain to the root certificate.
