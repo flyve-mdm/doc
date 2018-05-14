@@ -4,7 +4,7 @@ Translations
 I know a lot of languages
 -------------------------
 
-Great! We are currently translating to Korean, Spanish, Catalan, French, Portuguese, Russian and Japanese.
+Great! We are currently translating to Korean, Spanish, Catalan, French, Portuguese, Russian, Japanese and more.
 
 But wait! I'm an expert in a different language
 -----------------------------------------------
