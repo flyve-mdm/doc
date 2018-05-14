@@ -123,9 +123,11 @@ This configuration requires some patience.
 
 ``git config --global user.signingkey B344E73DA95715F4``
 
-Also run the following command to sign all commits by default:
+Also run the following commands to sign all commits by default:
 
 ``git config --global commit.gpgsign true``
+
+``git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"`` 
 
 Test it!
 $$$$$$$$
