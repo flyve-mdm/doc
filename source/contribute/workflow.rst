@@ -127,7 +127,9 @@ Also run the following commands to sign all commits by default:
 
 ``git config --global commit.gpgsign true``
 
-``git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"`` 
+  * Only for Windows:
+
+  ``git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"`` 
 
 Test it!
 $$$$$$$$

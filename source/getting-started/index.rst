@@ -121,6 +121,10 @@ The policies selected are sent in a JSON file to the MDM Agent with the values s
 
 If the MDM Agent does not have the system privileges, it will require the confirmation of the user to implement the policies.
 
+.. note::
+
+   Some policies are not available according to the version - API Level, for more information you can check the `Compatibility Matrix <http://flyve.org/android-mdm-agent/howtos/policies>`_
+
 Disable
 ~~~~~~~
 
@@ -175,6 +179,9 @@ Disable
 * Wifi: allows/forbids the user to connect to Wifi.
 
    Values: Yes or No.
+* Unknown sources: allows/forbids the installation of apps from unknown soureces.
+ 
+   Values: Yes or No
 
 Password
 ~~~~~~~~
@@ -214,9 +221,9 @@ Password
    Values:
 
    * Unspecified: no complexity specified.
-   * Something: 
+   * Something: requires a password but without a specific requirement.
    * Numeric: numbers only.
-   * Alphabetic: letters only.
+   * Alphabetic: letters or other symbols.
    * Alphanumeric: numbers and letters.
    * Complex: a combination of numbers, letters and symbols.
 * Reset password: if a pasword is forgotten, it resets it to a new value.
