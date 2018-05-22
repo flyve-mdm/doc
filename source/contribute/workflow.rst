@@ -30,7 +30,7 @@ After installing git, run:
 .. code::
 
     git config --global user.name "First.Name Last.Name"
-    git config --global email "myemail@email.com"
+    git config --global user.email "my.email@email.com"
 
 .. tip::
    Git provides the `Pro Git book <https://git-scm.com/book/en/v2>`_, available in several languages, and `Try Git <https://try.github.io/levels/1/challenges/1>`_, a 15 min tutorial, both very helpful if you're starting with SCM.
@@ -123,7 +123,7 @@ This configuration requires some patience.
 
 ``git config --global user.signingkey B344E73DA95715F4``
 
-Also run the following commands to sign all commits by default:
+Also run the following commands to sign all commits by default in your current local repository:
 
 ``git config --global commit.gpgsign true``
 
