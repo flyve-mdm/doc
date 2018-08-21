@@ -30,5 +30,3 @@ Downloads
    GLPI
    fusioninventory
    flyvemdm
-   wizard
-   
