@@ -21,6 +21,7 @@ Click on this link [Flyve MDM Documentation](http://flyvemdm-doc.rtfd.io/)
 * [Build Status](#build-status)
 * [Versioning](#versioning)
 * [Contact](#contact)
+* [Professional services](#professional-services)
 * [Contribute](#contribute)
 * [Copying](#copying)
 
@@ -40,6 +41,12 @@ See the tags section of our GitHub project for changelogs for each release versi
 
 For notices about major changes and general discussion of Flyve MDM development, subscribe to the [/r/FlyveMDM](http://www.reddit.com/r/FlyveMDM) subreddit.
 You can also chat with us via IRC in [#flyve-mdm on freenode](http://webchat.freenode.net/?channels=flyve-mdm) and [@flyvemdm on Telegram](https://t.me/flyvemdm).
+
+## Professional Services
+
+The Flyve MDM and GLPI Network services are available through our [Partner's Network](http://www.teclib-edition.com/en/partners/). We provide special training, bug fixes with editor subscription, contributions for new features, and more.
+
+Obtain a personalized service experience, associated with benefits and opportunities.
 
 ## Contribute
 
