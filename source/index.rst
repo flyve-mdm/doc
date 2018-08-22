@@ -28,5 +28,6 @@ Table of Contents
    :maxdepth: 2
    :caption: Contributing
 
+   contribute/docker
    contribute/workflow
    contribute/translations
