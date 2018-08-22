@@ -398,11 +398,11 @@ Property:
 #########
 
 * **code**: command identifier
-  * _start_: starts the application launcher
-  * _update_: updates the application launcher
-  * _unlock_: unlocks the 'screen pinning'
+ * _start_: starts the application launcher
+ * _update_: updates the application launcher
+ * _unlock_: unlocks the 'screen pinning'
 * **data**: applications' list
-  * _name_: application package to autorise on terminal
+ * _name_: application package to autorise on terminal
 
 Ps1: In the case only one applications is referenced, it will be executed automatically (self-launch)
 
@@ -440,8 +440,8 @@ Sub topic ``/Status/Task/<task ID>``
 The status value may be any string up to 255 chars except the reserved statuses (see below). The status should be a short string. In the future, statuses will be normalized.
 
 Reserved statuses:
-* queued (when a task is created, this value is used to initialize the task status)
-* pushed (when a message is sent by the backend, this value is used to update the status)
+ * queued (when a task is created, this value is used to initialize the task status)
+ * pushed (when a message is sent by the backend, this value is used to update the status)
 
 Sources
 -------
