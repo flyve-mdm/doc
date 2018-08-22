@@ -1,7 +1,7 @@
 Update user
 ===========
 
-This works only when a user has UPDATE right on users. a guest profile cannot update himself from the API currently, see `GLPI issue #2568 <https://github.com/glpi-project/glpi/issues/2568>`_.
+This works only when a user has UPDATE right on users, a guest profile cannot update himself from the API currently, see `GLPI issue #2568 <https://github.com/glpi-project/glpi/issues/2568>`_.
 
 The agent may update user information like phone number, emails, name.
 

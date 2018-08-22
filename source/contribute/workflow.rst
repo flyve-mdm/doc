@@ -157,7 +157,7 @@ $$$$$$$$
   * ``git push`` -> pushes the local changes to your remote repo (the repo on GitHub)
 
 .. tip::
-   Don't forget you can learn more about these git commands with the `Pro Git book <https://git-scm.com/book/en/v2>`_, available in several languages, available in several languages, and `Try Git <https://try.github.io/levels/1/challenges/1>`_, tutorial.
+   Don't forget you can learn more about these git commands with the `Pro Git book <https://git-scm.com/book/en/v2>`_, available in several languages, and `Try Git <https://try.github.io/levels/1/challenges/1>`_, tutorial.
 
 Now that everything is set up
 -----------------------------
@@ -181,7 +181,7 @@ We have three main branches in every repository, each one has a specific functio
 * The ``develop`` branch is for our Bleeding edge version, and finally
 * The ``gh-pages`` branch, where the project site is build using `Jekyll <https://jekyllrb.com/>`_.
 
-Continuos Integration
+Continuous Integration
 ~~~~~~~~~~~~~~~~~~~~~
 
 To speed things up and as part of our quality control, we count with automatic processes to run tests for the Pull Requests in our projects and to generate/update the information in the Development section on our gh-pages branches.

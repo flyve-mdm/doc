@@ -3,16 +3,30 @@ Enrollment process
 
 Enrollment requests
 ~~~~~~~~~~~~~~~~~~~
-The guest user enrolls himself using a deeplink sent by email. They both contain the same useful data to build several HTTP requests.
 
-The user token is a token to authenticate against the REST API. When an administrator invites someone to enroll his devices, an account is created. The login is the email address provided by the administrator. The user API token is unique among all user accounts. Using it alone is sufficient to get a session, as described in GLPI documentation.
+The guest user enrolls himself using a QR code or a deeplink sent by email. They both contain 
+the same useful data to build several HTTP requests.
+
+The user token is a token to authenticate against the REST API. When an administrator invites someone to enroll his devices, 
+an account is created. The login is the email address provided by the administrator.
+
+The user API token is unique among all user accounts. Using it alone is sufficient to get a session, as described in GLPI documentation.
 
 The invitation token is a hash with limited lifetime to identify the invitation being used at enrollment time.
 
-After the enrollment the agent must connect to the MQTT broker. The serial of the device and the password sent by the backend in the enrollment process are the credentials.
+After the enrollment the agent must connect to the MQTT broker. The serial of the device and the password sent 
+by the backend in the enrollment process are the credentials.
 
-Content in the deeplink
-~~~~~~~~~~~~~~~~~~~~~~~
+Deeplink
+~~~~~~~~
+
+`Flyve MDM Deeplink <https://github.com/flyve-mdm/deeplink>`_, is a microservice hosted by us, that generates a deeplink with 
+the information of the invitation to perform the enrollment of the device.
+
+The organizations have the option to set up their own instance of Flyve MDM Deeplink, in order to manage by themselves this microservice.
+
+Content
+#######
 
 The deeplink contains some base64 encoded semicolon separated fields like a CSV format:
 
@@ -24,13 +38,32 @@ The deeplink contains some base64 encoded semicolon separated fields like a CSV 
 * the website of the company's helpdesk
 * the email of the company's helpdesk
 
-All fields related to the helpdesk may be not populated by the administrators. The fields are ordered.
-
-The URL of the backend is the base for requests built by the client, which must be suffixed by the endpoint to reach. See the `GLPI documentation <https://github.com/glpi-project/glpi/blob/master/apirest.md>`_ to know more about the rest API of GLPI.
+All fields related to the helpdesk may not be populated by the administrators. The fields are ordered.
 
 .. code :: http
 
-   http://api.domain.com/aHR0cDovL2FwaS5kb21haW4uY29tLzs0NWVyamJ1ZGtscTU4NjVzZGtqaGprcztsa2hqZmtnc2RmNTQ2NjM0cztjb21wYW55J3MgaGVscGRlc2s7MDMzMTIzNDU2Nzg5O2h0dHBzOi8vc3VwcG9ydC5jb21wYW55LmNvbTtzdXBwb3J0QGNvbXBhbnkuY29t
+   http://api.domain.com/deeplink/?data=aHR0cDovL2FwaS5kb21haW4uY29tLzs0NWVyamJ1ZGtscTU4NjVzZGtqaGprcztsa2hqZmtnc2RmNTQ2NjM0cztjb21wYW55J3MgaGVscGRlc2s7MDMzMTIzNDU2Nzg5O2h0dHBzOi8vc3VwcG9ydC5jb21wYW55LmNvbTtzdXBwb3J0QGNvbXBhbnkuY29t
+
+Uses
+#######
+
+* Email account
+
+When the invitation is opened from the email account of the user in the respective device to enroll, the email will 
+display the deeplink with the information of the invitation encoded. Also the QR code image is attached.
+
+After tapping the link, the MDM Agent will recognize it and start the enrollment.
+
+* Computer browser
+
+The deeplink can also be opened in a computer's browser, in this case the deeplink will decode part of the 
+information and display the Helpdesk information and the QR code, so the user can scan it 
+from the MDM Agent and make the enrollment.
+
+* Mobile device browser
+
+In case the invitation is opened with the browser of the device, it will display a button that contains 
+the deeplink so the MDM Agent can recognize it and start the enrollment.
 
 Obtaining a session token
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,6 +85,11 @@ Answer:
    {
      "session_token": "83af7e620c83a50a18d3eac2f6ed05a3ca0bea62"
    }
+
+.. note ::
+
+  The URL of the backend is the base for requests built by the client, which must be suffixed by the endpoint to reach. 
+  See the `GLPI documentation <https://github.com/glpi-project/glpi/blob/master/apirest.md>`_ to know more about the rest API of GLPI.
 
 Check the current profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -249,7 +287,7 @@ Answer if the request succeeds
  
    The property certificate in the JSON payload is the certificate delivered to the agent if the client certificate feature is enabled.
 
-* **api_token**: to consume API from GLPI. Used to downlaod files and applications from HTTP(S).
+* **api_token**: to consume API from GLPI. Used to download files and applications from HTTP(S).
 * **mqttpasswd**: password to access MQTT. Login is the serial of the device.
 
 The api_token delivered by this request replaces the user_token used in the first request **initSession**. The agent must forget the user_token and save for later use the api_token received from this request.
