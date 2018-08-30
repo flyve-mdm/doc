@@ -223,9 +223,10 @@ Answer if the request succeeds
 
 .. code:: json
 
-   200 OK
+   201 OK
    {
-      "id": "17"
+      "id": "17",
+      "message": "XML has been imported succesfully!"
    }
 
 ``id`` is the ID of the agent in the database. It is needed for the next request.
