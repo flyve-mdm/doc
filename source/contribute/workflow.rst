@@ -81,33 +81,39 @@ This configuration requires some patience.
 1. Go to your Keybase account and generate a new GPG key.
 2. Sign in from a browser to your Keybase Account.
 3. Click on the ID of your PGP key.
-4. Copy everything between:
+4. Copy and paste the command to import your public GPG key on the terminal:
+
+.. code::
+
+   curl https://keybase.io/MY_USER_NAME/pgp_keys.asc | gpg --import
+
+5. Copy everything between:
 
 .. code::
 
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     -----END PGP PUBLIC KEY BLOCK-----
 
-5. Paste it on your GitHub settings
+6. Paste it on your GitHub settings
    Go to settings > SSH and GPG keys > New GPG key
-6. Import your private key to your PC:
+7. Import your private key to your PC:
 
-   6.1. Go to your keybase account on your browser
+   7.1. Go to your keybase account on your browser
 
-   6.2. Next to your key ID, click on edit and select export private key
+   7.2. Next to your key ID, click on edit and select export private key
 
       .. image:: images/export-private-key.png
          :alt: Export private key from keybase
 
-   6.3. Copy and paste your private key in a txt editor, and save it with the name ```private.key```
+   7.3. Copy and paste your private key in a txt editor, and save it with the name ```private.key```
 
        * On Windows make sure it is on your user folder.
 
-   6.4. Go to command line and run:
+   7.4. Go to command line and run:
 
       ``gpg --import private.key``
 
-   6.5. Check the key was imported by running:
+   7.5. Check the key was imported by running:
 
       ``gpg --list-secret-keys --keyid-format LONG``
 
@@ -119,7 +125,7 @@ This configuration requires some patience.
    .. image:: images/check-key-id.png
       :alt: Key ID on keybase
 
-7. Tell git about your GPG key, run:
+8. Tell git about your GPG key, run:
 
 ``git config --global user.signingkey B344E73DA95715F4``
 
@@ -159,6 +165,18 @@ $$$$$$$$
 .. tip::
    Don't forget you can learn more about these git commands with the `Pro Git book <https://git-scm.com/book/en/v2>`_, available in several languages, and `Try Git <https://try.github.io/levels/1/challenges/1>`_, tutorial.
 
+.. note::
+   Make sure that the email address in git, the Primary email in your GitHub account and the one in your GPG key are all the same.
+
+In case you wan to add an email account to your GPG, follow this guide `Associating an email account with your GPG key <https://help.github.com/articles/associating-an-email-with-your-gpg-key/>`_
+
+After adding your email account, remember to update your GPG on keybase, to do that, follow these steps:
+
+1. Sign in from a browser to your Keybase Account.
+2. Next to your key ID, click on edit and select Update my key (I edited it elsewhere).
+3. Run again gpg --armor --export B344E73DA95715F4
+4. Copy the output and paste it where indicated in keybase.
+
 Now that everything is set up
 -----------------------------
 
@@ -182,7 +200,7 @@ We have three main branches in every repository, each one has a specific functio
 * The ``gh-pages`` branch, where the project site is build using `Jekyll <https://jekyllrb.com/>`_.
 
 Continuous Integration
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 To speed things up and as part of our quality control, we count with automatic processes to run tests for the Pull Requests in our projects and to generate/update the information in the Development section on our gh-pages branches.
 
