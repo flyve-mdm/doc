@@ -17,7 +17,7 @@ You'll require to install and open new accounts in the following:
 * `Download GPG command line tools <https://www.gnupg.org/download/>`_
 * `Telegram account <https://telegram.org/>`_
 * `GitHub account <https://github.com/>`_
-* `Keybase Account <https://keybase.io/>`_
+* `Download Keybase <https://keybase.io/>`_
 
 Set things up
 -------------
@@ -63,11 +63,9 @@ $$$$$$$$
 
 1. `Create a Test Repository on GitHub <https://help.github.com/articles/create-a-repo/>`_
 
-2. Create a ``test`` directory on your work environment
+2. Create a **test** directory on your work environment
 
-3. From the terminal go to your ``test`` directory and run:
-
-   ``git clone git@github.com:MY-USER-NAME/MY-REPO-NAME.git``
+3. From the terminal go to your **test** directory and run: ``git clone git@github.com:MY-USER-NAME/MY-REPO-NAME.git``
 
 4. Run ``ls -a`` to list all directories in test/
 
@@ -78,42 +76,80 @@ GPG signing
 
 This configuration requires some patience.
 
-1. Go to your Keybase account and generate a new GPG key.
-2. Sign in from a browser to your Keybase Account.
-3. Click on the ID of your PGP key.
-4. Copy and paste the command to import your public GPG key on the terminal:
+1. Open a Terminal.
+2. Use the following command to create your GPG key: ``keybase pgp gen``
 
-.. code::
+  2.1. Add your information: Name, Email(s)
 
-   curl https://keybase.io/MY_USER_NAME/pgp_keys.asc | gpg --import
+  2.2. Make sure to push an encrypted copy of your secret key to keybase.io
+   
+  2.3. Add a passphrase to encrypt the key, be sure to remember it since the keychain will request it to save your keys.
 
-5. Copy everything between:
+3. Run the following command ``keybase pgp export`` and copy everything that starts and ends with:
 
 .. code::
 
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     -----END PGP PUBLIC KEY BLOCK-----
 
-6. Paste it on your GitHub settings
-   Go to settings > SSH and GPG keys > New GPG key
-7. Import your private key to your PC:
+4. Add it to your GitHub account, go to settings > SSH and GPG keys > New GPG key
 
-   7.1. Go to your keybase account on your browser
+5. Get the ID of your PGP key:
 
-   7.2. Next to your key ID, click on edit and select export private key
+  * Run ``gpg --list-secret-keys --keyid-format LONG``
+  * Check your keybase profile
+
+   .. image:: images/check-key-id-terminal.png
+      :alt: Key ID on terminal
+
+6. Tell git about your GPG key, run:
+
+``git config --global user.signingkey B344E73DA95715F4``
+
+Also run the following commands to sign all commits by default in your current local repository:
+
+``git config --global commit.gpgsign true``
+
+  * Only for Windows:
+
+  ``git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"`` 
+
+I already have a GPG key on Keybase
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+1. Sign in from a browser to your Keybase Account.
+2. Click on the ID of your PGP key.
+3. Copy and paste the command to import your public GPG key on the terminal:
+
+.. code::
+
+   curl https://keybase.io/MY_USER_NAME/pgp_keys.asc | gpg --import
+
+4. Add it to your GitHub account, go to settings > SSH and GPG keys > New GPG key
+
+.. code::
+
+    -----BEGIN PGP PUBLIC KEY BLOCK-----
+    -----END PGP PUBLIC KEY BLOCK-----
+
+5. Import your private key to your PC:
+
+   5.1. Go to your keybase account on your browser
+
+   5.2. Next to your key ID, click on edit and select export private key
 
       .. image:: images/export-private-key.png
          :alt: Export private key from keybase
 
-   7.3. Copy and paste your private key in a txt editor, and save it with the name ```private.key```
+   5.3. Copy and paste your private key in a txt editor, and save it with the name ``private.key``
 
        * On Windows make sure it is on your user folder.
 
-   7.4. Go to command line and run:
+   5.4. Go to command line and run:
 
       ``gpg --import private.key``
 
-   7.5. Check the key was imported by running:
+   5.5. Check the key was imported by running:
 
       ``gpg --list-secret-keys --keyid-format LONG``
 
@@ -125,7 +161,7 @@ This configuration requires some patience.
    .. image:: images/check-key-id.png
       :alt: Key ID on keybase
 
-8. Tell git about your GPG key, run:
+6. Tell git about your GPG key, run:
 
 ``git config --global user.signingkey B344E73DA95715F4``
 
