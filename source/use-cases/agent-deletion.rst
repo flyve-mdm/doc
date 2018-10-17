@@ -11,7 +11,7 @@ Unenrollment
 
 When an administrator unenrolls an agent, a MQTT message is sent to the device running this agent to process unenrollment. Once the unenrollment is done, the agent sends a MQTT message to acknowledge the unenrollment request.
 
-The backend waits for this acknowledgement to actually delete the agent from the database. The delay to send this acknowledgement is undertermined but should happen because the device is in the end of a cycle but still owned by legitimate user and is used in normal operations.
+The agent won't be removed from the database since the device is under the assumption that is still owned by a legitimate user and is used in normal operations.
 
 Forced deletion
 ~~~~~~~~~~~~~~~

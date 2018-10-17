@@ -315,7 +315,7 @@ If enabled, it will lock the device.
 Wipe
 ~~~~
 
-Erase all the information in the device.
+Erase all the information in the device without deleting the Agent from the database.
 
 .. warning::
 
