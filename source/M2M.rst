@@ -398,10 +398,13 @@ Property:
 #########
 
 * **code**: command identifier
+
  * _start_: starts the application launcher
  * _update_: updates the application launcher
  * _unlock_: unlocks the 'screen pinning'
-* **data**: applications' list
+
+* **data**: applications\' list
+
  * _name_: application package to autorise on terminal
 
 Ps1: In the case only one applications is referenced, it will be executed automatically (self-launch)
