@@ -31,3 +31,9 @@ Table of Contents
    contribute/docker
    contribute/workflow
    contribute/translations
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Partners
+
+   partners/aws
