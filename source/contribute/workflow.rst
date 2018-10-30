@@ -10,14 +10,14 @@ Starting from the basics, here we'll be explaining everything you need to know t
 Download & New Accounts
 -----------------------
 
-You'll require to install and open new accounts in the following:
+You'll require to install and open new accounts in:
 
 * `Download Git <https://git-scm.com/downloads>`_
 * `Download Visual Studio Code <https://code.visualstudio.com/#alt-downloads>`_
-* `Download GPG command line tools <https://www.gnupg.org/download/>`_
+* `Download GPG command line tools <https://www.gnupg.org/download/>`_ -> Mac OSX users download `GPG suite <https://gpgtools.org/>`_
 * `Telegram account <https://telegram.org/>`_
 * `GitHub account <https://github.com/>`_
-* `Download Keybase <https://keybase.io/>`_
+* `Download Keybase <https://keybase.io/>`_ if you don't have an account already.
 
 Set things up
 -------------
