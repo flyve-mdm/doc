@@ -37,3 +37,4 @@ Table of Contents
    :caption: Partners
 
    partners/aws
+   partners/cloud
