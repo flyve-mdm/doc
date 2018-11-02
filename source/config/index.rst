@@ -19,3 +19,10 @@ Next, we'll be explaining every configuration tab of the plugin.
    general
    message-queue
    debug
+
+Also, learn how to customize the default template for the user invitations.
+
+.. toctree::
+   :maxdepth: 1
+   
+   template
