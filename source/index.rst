@@ -38,3 +38,4 @@ Table of Contents
 
    partners/aws
    partners/cloud
+   partners/demo
