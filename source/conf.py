@@ -41,6 +41,7 @@ release = u''
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinxcontrib.mermaid'
 ]
 
 def setup(app):
