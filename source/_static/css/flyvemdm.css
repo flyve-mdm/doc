@@ -10,3 +10,7 @@ a {
 .wy-nav-top {
     background-color: #2d8783;
 }
+
+div.mermaid {
+    margin-bottom: 20px;
+}
