@@ -1,6 +1,8 @@
 UML Diagrams
 ============
 
+Here we present you the sequence diagrams of the main interactions between the GLPI Plugin and Flyve MDM Agent.
+
 Enrollment
 ----------
 
