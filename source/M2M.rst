@@ -125,7 +125,7 @@ Geolocation query
 
 Sub topic ``Command/Geolocate``
 
-.. code::json
+.. code:: json
 
    {
        "query" : "Geolocate"
@@ -163,7 +163,7 @@ Subtopic ``Status/Unenroll``
    }
 
 Password settings policies
-##########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are several password policies to setup the type of password required on a device and the complexity of the challenge.
 
@@ -237,17 +237,17 @@ Topic: 0/fleet/1/Policy/passwordMinSymbols/Task/12
    { "passwordMinSymbols" : "0|1|2|..", "taskId": "12"}
 
 Application deployment policies
-###############################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are two application deployment policies. One policy actually deploys an application, the other one removes an application. These policies may both apply multiple times on the same fleet target.
 
 The deployment policy retains a remove_on_delete flag. If this flag is set, removal of the deployment policy will create a policy in charge of the deletion of the same application, applied to the same fleet target.
 
 Example
-$$$$$$$
+#######
 
 Three deployment policies are applied to a single fleet target
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 Topic: 0/fleet/1/Policy/deployApp/Task/11
 
@@ -268,7 +268,7 @@ Topic: 0/fleet/1/Policy/deployApp/Task/19
    {"deployApp" : "com.domain.application", "id" : "5", "version": "42", "taskId": "19"}
 
 One application removal policies is applied to a fleet target
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 Topic: 0/fleet/1/Policy/removeApp/Task/16
 
@@ -280,12 +280,12 @@ Topic: 0/fleet/1/Policy/removeApp/Task/16
    }
 
 File deployment policies
-########################
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Example of file deployment policy
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#################################
 
-Topic: 0/fleet/1/Policy/removeApp/Task/23
+Topic: 0/fleet/1/Policy/deployFile/Task/23
 
 .. code:: json
 
@@ -296,9 +296,9 @@ Topic: 0/fleet/1/Policy/removeApp/Task/23
    }
 
 Peripheral related policies
-###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Topic: 0/fleet/1/Policy/removeApp/Task/25
+Topic: 0/fleet/1/Policy/disableCamera/Task/25
 
 .. code:: json
 
@@ -308,10 +308,10 @@ Topic: 0/fleet/1/Policy/removeApp/Task/25
    }
 
 Device access policies
-######################
+~~~~~~~~~~~~~~~~~~~~~~
 
 Lock a device
-$$$$$$$$$$$$$
+#############
 
 To lock a device as soon as possible
 
@@ -322,7 +322,7 @@ To lock a device as soon as possible
    }
 
 Unlock a device
-$$$$$$$$$$$$$$$
+###############
 
 To unlock a device
 
@@ -333,7 +333,7 @@ To unlock a device
    }
 
 Wipe a device
-$$$$$$$$$$$$$
+#############
 
 Sub topic ``/Command/Wipe``
 
@@ -346,11 +346,11 @@ Sub topic ``/Command/Wipe``
 QoS of the message = 2
 
 Connectivity policies
-#####################
+~~~~~~~~~~~~~~~~~~~~~
 
 3 policies are available, a registered user can choose to apply only some of them. This means the array in the JSON may contain a subset of the JSON array below.
 
-Topic: 0/fleet/1/Policy/removeApp/Task/25
+Topic: 0/fleet/1/Policy/disableWifi/Task/25
 
 .. code:: json
 
@@ -359,7 +359,7 @@ Topic: 0/fleet/1/Policy/removeApp/Task/25
       "taskId": "25"
    }
 
-Topic: 0/fleet/1/Policy/removeApp/Task/27
+Topic: 0/fleet/1/Policy/disableGPS/Task/27
 
 .. code:: json
 
@@ -368,7 +368,7 @@ Topic: 0/fleet/1/Policy/removeApp/Task/27
 	   "taskId": "27"
    }
 
-Topic: 0/fleet/1/Policy/removeApp/Task/28
+Topic: 0/fleet/1/Policy/disableBluetooth/Task/28
 
 .. code:: json
 
