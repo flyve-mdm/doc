@@ -63,6 +63,39 @@ There you can add all the policies your fleet requires.
 
 Once you assign the devices to the Fleet, all the policies will be immediately applied!
 
+Task Status
+~~~~~~~~~~~
+
+You can check the status of the policies deployed.
+
+============  =========================================================
+Status        Description
+------------  ---------------------------------------------------------
+Pending       Waiting for publication of the task, not yet received by the Agent
+Received      Succesfully received by the Agent, not yet applied
+Done          Task succesfully applied
+Failed        Task could not be applied due to a failure
+Canceled      The task was canceled
+Incompatible  The task cannot be applied on the device because it is incompatible
+Overriden     The task is overiden by a similar one applied on the device itself
+Waiting       Only for deploy tasks which require time for application
+============  =========================================================
+
+From the Fleets section
+
+Select your fleet then click on the Task Status tab
+
+.. image:: images/task-status-fleet.png
+   :alt: Task Status Fleet
+
+From the Agent section.
+
+Select the Agent then click on the Task Status tab
+
+.. image:: images/task-status-agent.png
+   :alt: Task Status Agent
+
+
 Assign the Agent to a Fleet
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -72,10 +105,10 @@ For this you must go to the Agent section
 * In the Fleet option, select your fleet
 * Click on save
 
-.. image :: images/assign-fleet.png
+.. image:: images/assign-fleet.png
    :alt: Assign a fleet
 
-.. note ::
+.. note::
    An Agent can be assigned to only one Fleet.
 
 Adding Files & Applications
@@ -83,7 +116,7 @@ Adding Files & Applications
 
 You must add in their respective sections the Files and Packages so you can deploy them on your Fleet. 
 
-.. note ::
+.. note::
    You must have previously added the APK and UPK types.
 
 * Go to the Files section
@@ -91,13 +124,13 @@ You must add in their respective sections the Files and Packages so you can depl
 * Name and select your file
 * Click on Add
 
-.. image :: images/file.gif
-   :alt: Adding files
+.. image:: images/file.gif
+    :alt: Adding files
 
 Now it will be available when you use the Deploy file policy.
 
-.. image :: images/file-added.png
-   :alt: File deployment
+.. image:: images/file-added.png
+    :alt: File deployment
 
 The same procedure applies to the applications.
 
@@ -106,13 +139,13 @@ The same procedure applies to the applications.
 * Name and select your application
 * Click on Add
 
-.. image :: images/app.gif
-   :alt: Adding Applications
+.. image:: images/app.gif
+    :alt: Adding Applications
 
 Now it will be available when you use the Deploy application policy.
 
-.. image :: images/app-added.png 
-   :alt: Apps deployment
+.. image:: images/app-added.png 
+    :alt: Apps deployment
 
 Our Policies
 ------------
@@ -226,6 +259,7 @@ Password
    * Alphabetic: letters or other symbols.
    * Alphanumeric: numbers and letters.
    * Complex: a combination of numbers, letters and symbols.
+
 * Reset password: if a pasword is forgotten, it resets it to a new value.
 
    Values: the new password (string).
@@ -291,7 +325,7 @@ These are particular actions that can be taken only from the Agent section, some
 
 Ping
 ~~~~
- 
+
 Allows to check the connectivity with the device.
 
 Geolocate
