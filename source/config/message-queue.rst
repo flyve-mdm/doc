@@ -21,6 +21,11 @@ Message Queue
   * Use client certificate: enables use of the client's certificate.
   * SSL certificate server for MQTT clients: url to the certificate server for MQTT clients.
 
+* Firebase Cloud Messaging
+
+  * Enable this feature to use FCM, for devices with Android 8 or later.
+  * API Token: the server key, you can find it in your Firebase project settings > Cloud Messaging
+
 .. important::
    After sending the certification request, the CA will very likely send back several files. 
    One is the certificate, signed by the CA, and the others are intermediate certificates.
@@ -28,3 +33,7 @@ Message Queue
    In Mosquitto **the certificate must be the concatenation of the certificate delivered + the intermediate certificates.**
 
    The operating system must contain more certificates to establish a trust chain to the root certificate.
+
+.. important::
+   The MQTT protocol and FCM can be enabled at the same time, to use FCM be sure to
+   read `How to install the MDM Agent for Android 8 or later <http://flyve.org/android-mdm-agent/howtos/installation#android-later>`_.
