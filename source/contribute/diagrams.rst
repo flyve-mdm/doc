@@ -3,15 +3,15 @@ UML Diagrams
 
 Here we present you the sequence diagrams of the main interactions between the GLPI Plugin and Flyve MDM Agent.
 
-Enrollment
-----------
+Enrollment MQTT
+---------------
 
 .. mermaid::
 
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     participant U as User
     A->>P: create invitation to enroll with user email
@@ -20,49 +20,82 @@ Enrollment
     U-->>Ag: open invitation in the device, fill information
     Ag-->>P: send user information and inventory through HTTP request
     P->>P: update user account, add Agent to DB, create MQTT credentials
-    P->>M: send MQTT credentials
-    M->>Ag: send MQTT credentials
-    Ag-->>M: connect to MQTT server
+    P->>B: send MQTT credentials
+    B->>Ag: send MQTT credentials
+    Ag-->>B: connect to MQTT server
 
-Status Online/Offline
----------------------
-
-.. mermaid::
-
-   sequenceDiagram
-    participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
-    participant Ag as Agent
-    Ag->>M: connect to MQTT
-    Ag->>Ag: update UI
-    Ag->>M: last will status Offline
-    M->>M: save last will message
-    Ag-->>M: status Online
-    M-->>D: status Online
-    D-->>P: status Online
-    P->>P: update UI
-    loop Maintain connection
-        Ag->>M: Ping message
-        M->>Ag: Ping response
-    end
-    Note right of Ag: For some reason, <br/>the agent looses connectivity
-    Ag->>Ag: update UI
-    Note right of M: Closing TCP socket
-    M-->>D: status Offline
-    D-->>P: status Offline
-    P->>P: update UI
-
-Implementation of policies
---------------------------
+Enrollment FCM
+--------------
 
 .. mermaid::
 
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
+    participant Ag as Agent
+    participant U as User
+    A->>P: create invitation to enroll with user email
+    P->>P: create user in DB with given email
+    P->>U: send invitation to user email account
+    U-->>Ag: open invitation in the device
+    Ag->>Ag: conect to FCM
+    U-->>Ag: fill information
+    Ag-->>P: send user information, FCM credentials and inventory through HTTP request
+    P->>P: update user account, add Agent to DB, receive FCM credentials
+
+Status Online/Offline MQTT
+--------------------------
+
+.. mermaid::
+
+   sequenceDiagram
+    participant P as Plugin
+    participant B as Broker
+    participant Ag as Agent
+    Ag->>B: connect to MQTT
+    Ag->>Ag: update UI
+    Ag->>B: last will status Offline
+    B->>B: save last will message
+    Ag-->>B: status Online
+    B-->>P: status Online
+    P->>P: update UI
+    loop Maintain connection
+        Ag->>B: Ping message
+        B->>Ag: Ping response
+    end
+    Note right of Ag: For some reason, <br/>the agent looses connectivity
+    Ag->>Ag: update UI
+    Note right of B: Closing TCP socket
+    B-->>P: status Offline
+    P->>P: update UI
+
+Status Online/Offline FCM
+-------------------------
+
+.. mermaid::
+
+   sequenceDiagram
+    participant P as Plugin
+    participant B as Broker
+    participant Ag as Agent
+    Ag->>B: connect to FCM
+    Ag->>Ag: update UI
+    Ag->>P:send through HTTP status Online
+    P->>P: update UI
+
+The Offline status is only sent to the backend when there is an unenrollment or wipe,
+if the Agent looses connectivity in any other form, it won't send the status
+
+Implementation of policies MQTT
+-------------------------------
+
+.. mermaid::
+
+   sequenceDiagram
+    participant A as Administrator
+    participant P as Plugin
+    participant B as Broker
     participant Ag as Agent
     participant U as User
     alt fleet without Agent(s)
@@ -74,18 +107,41 @@ Implementation of policies
     opt device
         A->>P: set policy
     end
-    P->>M: send policies individually
-    M->>Ag: send policies individually
+    P->>B: send policies individually
+    B->>Ag: send policies individually
     Ag->>Ag: apply policies
-    Ag-->>M: send task status
-    M-->>D: send task status
-    D-->>P: send task status
+    Ag-->>P: send task status through HTTP
     P->>P: update UI
     U->>Ag: change a setting controlled by a policy
     par get broadcast
         Ag->>Ag: check policy value
         Ag->>Ag: maintain policy value given by the Administrator
     end
+
+Implementation of policies FCM
+------------------------------
+
+.. mermaid::
+
+   sequenceDiagram
+    participant A as Administrator
+    participant P as Plugin
+    participant B as Broker
+    participant Ag as Agent
+    alt fleet without Agent(s)
+        A->>P: create fleet and set policies
+        A->>P: assign agents to fleet
+    else fleet with Agent(s)
+        A->>P: add policy
+    end
+    opt device
+        A->>P: set policy
+    end
+    P->>B: send policies individually
+    B->>Ag: send policies individually
+    Ag->>Ag: apply policies
+    Ag-->>P: send task status through HTTP
+    P->>P: update UI
 
 File & App download
 -------------------
@@ -95,14 +151,13 @@ File & App download
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     participant U as User
     A->>P: upload file/app
     A->>P: send download policy
-    P->>M: send download policy
-    M->>Ag: send download policy
+    P->>B: send download policy
+    B->>Ag: send download policy
     Ag-->>P: send HTTP request to download file
     Note right of Ag: For files the Agent has all priveleges <br/> to download them
     alt Agent has system privileges
@@ -115,9 +170,7 @@ File & App download
         U-->>Ag: allow unknown sources
         Ag->>Ag: download app
     end
-    Ag-->>M: send task status
-    M-->>D: send task status
-    D-->>P: send task status
+    Ag-->>P: send task status through HTTP
     P->>P: update UI
 
 Ping request
@@ -128,15 +181,12 @@ Ping request
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     A->>P: send ping request
-    P->>M: send ping request
-    M->>Ag: send ping request
-    Ag-->>M: ping response
-    M-->>D: ping response
-    D-->>P: ping response
+    P->>B: send ping request
+    B->>Ag: send ping request
+    Ag-->>P: ping response through HTTP
     P->>P: update UI
 
 Geolocation
@@ -147,16 +197,13 @@ Geolocation
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     A->>P: request Geolocation
-    P->>M: request Geolocation
-    M->>Ag: request Geolocation
+    P->>B: request Geolocation
+    B->>Ag: request Geolocation
     alt Agent answers immediately 
-        Ag->>M: send status Geolocation
-        M-->>D: send status Geolocation
-        D-->>P: send status Geolocation
+        Ag->>P: send status Geolocation
         P->>P: save Geolocation in DB
     else Agent doesn't answer immediately
         P->>P: display timeout error
@@ -170,16 +217,13 @@ Wipe
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     A->>P: send wipe command
-    P->>M: send wipe command
-    M->>Ag: send wipe command
+    P->>B: send wipe command
+    B->>Ag: send wipe command
     Ag->>Ag: wipe phone data
-    Ag-->>M: send task status
-    M-->>D: send task status
-    D-->>P: send task status
+    Ag-->>P: send task status and Offline status through HTTP
     P->>P: update UI
 
 Lock/Unlock
@@ -190,16 +234,13 @@ Lock/Unlock
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     A->>P: send lock/unlock command
-    P->>M: send lock/unlock command
-    M->>Ag: send lock/unlock command
+    P->>B: send lock/unlock command
+    B->>Ag: send lock/unlock command
     Ag->>Ag: lock/unlock phone
-    Ag-->>M: send task status
-    M-->>D: send task status
-    D-->>P: send task status
+    Ag-->>P: send task status through HTTP
     P->>P: update UI
 
 Inventory
@@ -210,39 +251,57 @@ Inventory
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     A->>P: request inventory
-    P->>M: request inventory
-    M->>Ag: request inventory
+    P->>B: request inventory
+    B->>Ag: request inventory
     Ag->>Ag: create inventory
-    Ag-->>M: send inventory in XML format
-    M-->>D: send inventory in XML format
-    D-->>P: send inventory in XML format
+    Ag-->>P: send inventory in XML format through HTTP
     P->>P: update UI
 
-Unenrollment
-------------
+Unenrollment MQTT
+-----------------
 
 .. mermaid::
 
    sequenceDiagram
     participant A as Administrator
     participant P as Plugin
-    participant D as Daemon
-    participant M as Mosquitto
+    participant B as Broker
     participant Ag as Agent
     A->>P: send unenrollment
-    P->>M: send unenrollment
-    M->>Ag: send unenrollment
+    P->>B: send unenrollment
+    B->>Ag: send unenrollment
     Note right of Ag: Policies will have the last<br/> value sent by the Plugin,<br/> the user can now modify them
     Ag->>Ag: Update UI, remove constraint on policies
-    Ag-->>M: disconnect MQTT
-    Ag->>M: status unenrolled
-    M-->>D: status unenrolled
-    D-->>P: status unenrolled
+    Ag-->>B: disconnect MQTT
+    Ag->>B: status unenrolled
+    B-->>P: status unenrolled
     P->>P: remove user account, remove MQTT credentials
+    alt removal successful
+    P->>P: delete data related to the Agent, delete Agent from DB
+    else removal unsuccessful
+    P->>P: Agent remains in DB
+    end
+
+Unenrollment FCM
+-----------------
+
+.. mermaid::
+
+   sequenceDiagram
+    participant A as Administrator
+    participant P as Plugin
+    participant B as Broker
+    participant Ag as Agent
+    A->>P: send unenrollment
+    P->>B: send unenrollment
+    B->>Ag: send unenrollment
+    Note right of Ag: Policies will have the last<br/> value sent by the Plugin,<br/> the user can now modify them
+    Ag->>Ag: Update UI, remove constraint on policies, remove FCM credentials
+    Ag->>P: status unenrolled and status Offline
+    P->>P: remove user account
     alt removal successful
     P->>P: delete data related to the Agent, delete Agent from DB
     else removal unsuccessful
