@@ -5,7 +5,7 @@ You must create your own instance of GLPI, in order to use the Flyve MDM plugin 
 
 .. note::
 
-   Yo can follow the proper `GLPI installation documentation <http://glpi-install.rtfd.io/>`_.
+   You can follow the proper `GLPI installation documentation <http://glpi-install.rtfd.io/>`_.
 
 * Go to ``/var/www/``
 * Download GLPI, you can get it with any of these methods:
